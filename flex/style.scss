@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+
 // reset
 * {
   padding: 0;
@@ -15,96 +17,709 @@ a {
 }
 
 $color: (
-  main-bg: #222,
+  main-bg: #111,
   main-white: #fff,
 );
 
 body {
+  position: relative;
+  background: map-get($color, main-bg);
+  overflow-x: hidden;
+}
+
+.title {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  h1 {
+    position: absolute;
+    left: -50%;
+    top: 43%;
+    display: flex;
+    align-items: start;
+    transform: rotate(-90deg);
+    color: map-get($color, main-white);
+    font: 300 150px/120px "Playfair Display";
+  }
+}
+// header
+#header {
+  position: relative;
+  display: flex;
   width: 100%;
   height: 100vh;
-  background: map-get($color, main-bg);
-
-  // header
-  .header_container {
-    position: relative;
-    z-index: 9;
+  justify-content: center;
+  align-items: center;
+  .header_navigation {
+    transition: all 0.5s;
+    position: fixed;
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 120px;
-    justify-content: center;
-    align-items: center;
-    .header_navigation {
-      position: fixed;
-      padding: 0 60px;
-      width: 100%;
+    height: 100px;
+    top: 10px;
+    left: 0;
+    z-index: 100;
+    padding: 40px 60px;
+    color: map-get($color, main-white);
+    .logo {
+      font: bold 24px/1rem "noto sans kr";
+    }
+    .gnb {
+      display: flex;
+      justify-content: flex-end;
+      gap: 60px;
+      font-weight: 400;
+      font-size: 18px;
+      width: 1050px;
+      text-transform: uppercase;
+      a {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 5px;
+        transition: all 0.3s;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          border-bottom: 1px solid transparent;
+          transition: all 0.3s;
+          transform: translateX(-50%);
+        }
+        &:hover::before {
+          width: 100%;
+          border-bottom: 1px solid #fff;
+        }
+      }
+    }
+    .sns {
+      width: 200px;
       display: flex;
       justify-content: space-between;
-      color: map-get($color, main-white);
-      .logo {
-        font: bold 24px/1rem "noto sans kr";
-      }
-      .gnb {
-        display: flex;
-        justify-content: flex-end;
-        gap: 60px;
-        font-weight: 400;
-        font-size: 18px;
-        width: 1050px;
-        text-transform: uppercase;
-      }
-      .sns {
-        width: 200px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 24px;
-        font-weight: 400;
-      }
+      font-size: 24px;
+      font-weight: 400;
+    }
+    &.active {
+      top: -100px;
+      background: rgba($color: #000000, $alpha: 0.7);
     }
   }
-  .header_content_video {
+  .header_content {
+    position: relative;
     width: 100%;
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    &::before {
-      content: "1";
+    .header_content_video {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 1200px;
-      background: rgba(0, 0, 0, 0.2);
-    }
-  }
-  .inner_text {
-    height: 100vh;
-    position: relative;
-    left: 0;
-    bottom: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 20px;
-    align-items: center;
-    text-align: center;
-    color: map-get($color, main-white);
-    border: 1px solid #f00;
-    h1 {
-      font-size: 150px;
-      span {
-        font-weight: 300;
+      height: 100%;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+      }
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
       }
     }
-    div {
-      width: 1px;
-      height: 200px;
-      background: map-get($color, main-white);
+    .inner_text {
+      z-index: 2;
+      position: relative;
+      top: 35%;
+      left: 0;
+      gap: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      color: map-get($color, main-white);
+      h1 {
+        font-size: 150px;
+        span {
+          font: 200 126px/1rem "Playfair Display";
+        }
+      }
+      div {
+        width: 1px;
+        height: 200px;
+        background: map-get($color, main-white);
+      }
+      .scroll {
+        position: absolute;
+        width: 2px;
+        height: 100px;
+        top: 40%;
+        animation: ani 1.3s ease-in-out infinite;
+        animation-delay: 2s;
+        opacity: 0;
+      }
+      p {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+@keyframes ani {
+  0% {
+    animation-delay: 0.5s;
+    top: 45%;
+    opacity: 1;
+  }
+  50% {
+    animation-delay: 0.5s;
+    opacity: 1;
+  }
+  100% {
+    top: 76%;
+    height: 50px;
+    opacity: 1;
+  }
+}
+
+// section
+#section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  .section_content {
+    color: map-get($color, main-white);
+    h1 {
+      font-size: 70px;
+      line-height: 120px;
+      img {
+        border-radius: 300px 300px 30px 30px;
+      }
+    }
+    span {
+      font: 300 70px/120px "Playfair Display";
     }
     p {
-      font-size: 16px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-top: 50px;
+      font-size: 30px;
+      line-height: 50px;
+    }
+  }
+}
+
+//whaton
+#whaton {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .whatup_content {
+    color: map-get($color, main-white);
+    margin-left: 20px;
+    width: 680px;
+    height: 500px;
+    cursor: pointer;
+    &:last-child {
+      margin-left: 0;
+    }
+    img {
+      width: 650px;
+      height: 400px;
+      object-fit: cover;
+      padding-bottom: 30px;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    h3 {
+      width: 85px;
+      margin: 0 0 16px 20px;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      font-weight: bold;
+    }
+    p {
+      padding: 0 20px;
+    }
+  }
+}
+
+//artwork
+#artwork {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  color: map-get($color, main-white);
+  .artwork_content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .content_top {
+      position: relative;
+      margin-bottom: 40px;
+      transition: all 0.3s;
+      a {
+        img {
+          position: relative;
+          width: 1300px;
+          height: 500px;
+          object-fit: cover;
+          transition: all 0.5s;
+          z-index: -1;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          transition: all 0.3s;
+        }
+        &:hover::before {
+          background: rgba(0, 0, 0, 0.2);
+        }
+      }
+      .artwork_inner_text {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        h3 {
+          font: 400 40px/1rem "noto sans kr";
+        }
+        p {
+          margin-top: 40px;
+          font-size: 20px;
+        }
+      }
+    }
+    .content_bottom {
+      display: flex;
+      gap: 30px;
+      .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        img {
+          width: 410px;
+          height: 200px;
+          object-fit: cover;
+        }
+        &::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          transition: all 0.3s;
+        }
+        &:hover::before {
+          background: rgba($color: #000000, $alpha: 0.4);
+        }
+      }
+      .artwork_inner_text {
+        position: absolute;
+        bottom: 10%;
+        left: 15%;
+        h3 {
+          font: 400 24px/1rem "noto sans kr";
+        }
+        p {
+          margin-top: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+//Artist
+#Artist {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .Artist_content {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .Artist_video {
+      margin-bottom: 30px;
+    }
+    .myslider {
+      display: flex;
+      gap: 30px;
+      .slide {
+        img {
+          width: 280px;
+          height: 320px;
+          object-fit: cover;
+        }
+        p {
+          color: map-get($color, main-white);
+        }
+      }
+    }
+  }
+}
+
+//subscribe
+#subscribe {
+  width: 100%;
+  height: 500px;
+  color: map-get($color, main-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10%;
+  gap: 40px;
+  background: url("./img/bg_newsletter.jpg") center/cover no-repeat;
+  h1 {
+    font-size: 40px;
+  }
+  button {
+    padding: 16px 120px;
+    font-size: 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: map-get($color, main-bg);
+      color: map-get($color, main-white);
+    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: normal;
+  }
+}
+
+//contact
+#contact {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: map-get($color, main-white);
+  .contact_inner {
+    width: 900px;
+    h1 {
+      font-size: 80px;
+      margin-bottom: 100px;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      li {
+        font-size: 40px;
+        a {
+          position: relative;
+          transition: all 0.5s;
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            transition: all 0.5s;
+            border-bottom: 1px solid transparent;
+          }
+          &:hover::before {
+            width: 100%;
+            border-bottom: 1px solid #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+//footer
+#footer {
+  width: 100%;
+  height: 200px;
+  color: map-get($color, main-white);
+  .footer_inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 50px;
+    justify-content: space-between;
+    .footer_inner_left {
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        font-size: 22px;
+        & li .fa-brands {
+          font-size: 34px;
+        }
+      }
+      p {
+        margin-top: 36px;
+        font-size: 22px;
+      }
+    }
+    .footer_inner_right {
+      label {
+        font-size: 22px;
+        font-weight: 300;
+      }
+      div {
+        height: 100%;
+        margin-top: 30px;
+        align-items: flex-end;
+        input[type="email"] {
+          background: none;
+          border: none;
+          font-size: 16px;
+          border-bottom: 1px solid #888;
+          color: map-get($color, main-white);
+          &::placeholder {
+            padding: 10px;
+            font-size: 12px;
+            line-height: 300px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+        button {
+          margin-left: 10px;
+          padding: 12px 26px;
+          border-radius: 50px;
+          background: none;
+          background: map-get($color, main-bg);
+          border: none;
+          border: 1px solid #888;
+          color: map-get($color, main-white);
+          font-size: 13px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            background: map-get($color, main-white);
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  body {
+    width: 100%;
+  }
+  .title {
+    position: sticky;
+    left: 20px;
+    width: 300px;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    h1 {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      transform: rotate(0deg);
+      font: 300 80px/1rem "Playfair Display";
+    }
+  }
+  //header
+  #header {
+    .header_navigation {
+      width: 100%;
+      .logo {
+        width: 100px;
+        font: bold 20px/1rem "noto sans kr";
+      }
+      .gnb {
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+      }
+    }
+    .header_content {
+      .inner_text {
+        justify-content: center;
+        h1 {
+          font-size: 100px;
+          span {
+            font-size: 80px;
+          }
+        }
+      }
+    }
+  }
+  //section
+  #section {
+    .section_content {
+      h1 {
+        font-size: 40px;
+        img {
+          width: 150px;
+        }
+      }
+      span {
+        font-size: 40px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+  //whaton
+  #whaton {
+    .whatup_content {
+      margin-left: -20%;
+      img {
+        width: 90%;
+      }
+      h3 {
+        margin: 0;
+        margin-bottom: 14px;
+      }
+      p {
+        width: 80%;
+        padding: 0;
+      }
+    }
+  }
+  //artwork
+  #artwork {
+    .artwork_content {
+      margin-right: 200px;
+      .content_top {
+        margin-bottom: 0;
+        a {
+          img {
+            width: 100%;
+            height: 400px;
+          }
+        }
+        .artwork_inner_text {
+          gap: 10px;
+          h3 {
+            font-size: 30px;
+          }
+          p {
+            margin-top: 20px;
+          }
+        }
+      }
+      .content_bottom {
+        .content {
+          img {
+            width: 100%;
+          }
+        }
+        .artwork_inner_text {
+          h3 {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+  //Artist
+  #Artist {
+    .Artist_content {
+      margin-right: 100px;
+      .Artist_video {
+        margin-top: 20%;
+        iframe {
+          height: 400px;
+        }
+      }
+      .myslider {
+        .slide {
+          img {
+            width: 98%;
+            height: 100%;
+          }
+          p {
+            font-size: 14px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  //subscribe
+  #subscribe {
+    h1 {
+      font-size: 30px;
+    }
+    button {
+      padding: 16px 80px;
+    }
+  }
+
+  //contact
+  #contact {
+    width: 100%;
+    .contact_inner {
+      width: 100%;
+      padding: 10%;
+      h1 {
+        font-size: 60px;
+      }
+    }
+  }
+
+  //footer
+  #footer {
+    width: 100%;
+    .footer_inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .footer_inner_left {
+        ul {
+          gap: 30px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+      .footer_inner_right {
+        width: 100%;
+        margin-top: 100px;
+      }
     }
   }
 }
