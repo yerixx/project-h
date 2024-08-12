@@ -12,51 +12,51 @@
     <script defer src="./script.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="outbox">
-        <div class="wrapper">
-          <div class="profile">
-            <div class="profileToday">
-              <span>TODAY <b>0</b> | TOTAL 44,569</span>
+    <div class="background">
+      <div class="wrapper">
+        <div class="profile">
+          <div class="profileToday">
+            <span>TODAY <b>0</b> | TOTAL 44,569</span>
+          </div>
+          <div class="profileBody">
+            <div class="profileTop">
+              <div class="profileFeel">
+                <form
+                  name="feelingForm"
+                  action="http://127.0.0.1:5500"
+                  method="post"
+                >
+                  <select name="feeling" id="feeling">
+                    <option value="happy">TODAY IS ... 🌹 행복</option>
+                    <option value="fun">TODAY IS ... 🎵 즐거움</option>
+                    <option value="sad">TODAY IS ... 😭 슬픔</option>
+                    <option value="angry">TODAY IS ... 😡 분노</option>
+                  </select>
+                </form>
+              </div>
+              <div class="profileimg">
+                <img src="./img/profile.jpg" alt="profile" />
+              </div>
+              <div class="profileMessage">+‥ユ댄,LH맘,알기나,할까요ε♥з?¿‥+</div>
             </div>
-            <div class="profileBody">
-              <div class="profileTop">
-                <div class="profileFeel">
-                  <form
-                    name="feelingForm"
-                    action="http://127.0.0.1:5500"
-                    method="post"
-                  >
-                    <select name="feeling" id="feeling">
-                      <option value="happy">TODAY IS ... 🌹행복</option>
-                      <option value="fun">TODAY IS ... 🎵즐거움</option>
-                      <option value="sad">TODAY IS ... 😭슬픔</option>
-                      <option value="angry">TODAY IS ... 😡분노</option>
-                    </select>
-                  </form>
-                </div>
-                <div class="profileimg">
-                  <img src="./img/profile.jpg" alt="profile" />
-                </div>
-                <div class="profileMessage">
-                  +‥ユ댄,LH맘,알기나,할까요ε♥з?¿‥+
-                </div>
+            <div class="profileCenter">
+              <div>
+                <span> <i class="fas fa-caret-right"></i>EDIT</span>
+                <span> <i class="fas fa-caret-right"></i>HISTORY</span>
               </div>
-              <div class="profileCenter">
-                <span> <i class="fas fa-caret-right"> </i>EDIT</span>
-                <span> <i class="fas fa-caret-right"> </i>HISTORY</span>
-                <i class="fas fa-caret-up"></i>
+              <div>
                 <i class="fas fa-caret-down"></i>
+                <i class="fas fa-caret-up"></i>
               </div>
-              <div class="profileBottom">
-                <span><b>박예림</b> (♀) 1998.01.12 + </span>
-                <span>yerixxz@gmail.com</span>
-              </div>
+            </div>
+            <div class="profileBottom">
+              <span><b>박예림</b> (♀) 1998.01.12 + </span>
+              <span>yerixxz@gmail.com</span>
             </div>
           </div>
-          <div class="contents"></div>
-          <div class="navigation"></div>
         </div>
+        <div class="contents"></div>
+        <div class="navigation"></div>
       </div>
     </div>
   </body>
