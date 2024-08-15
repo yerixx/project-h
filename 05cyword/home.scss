@@ -70,9 +70,15 @@ body {
           input[type="text"] {
             width: 630px;
             height: 24px;
+            padding: 0 5px;
             &::placeholder {
-              padding: 0 10px;
+              padding: 0 5px;
               font-size: 0.9rem;
+              color: #bbb;
+            }
+            &:focus {
+              outline: none;
+              padding: 0 5px;
             }
           }
         }
@@ -86,18 +92,23 @@ body {
           cursor: pointer;
         }
       }
-      div {
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
+
+      .ilchonText {
         width: 100%;
-        gap: 16px;
-        span {
+
+        li {
           width: 100%;
-          padding: 6px 10px;
+          padding: 10px 0;
           border-bottom: 1px dotted #ddd;
           b {
             color: $theme-color;
+            cursor: pointer;
+          }
+          button {
+            border: none;
+            background: none;
+            color: #999;
+            font-size: 0.9rem;
             cursor: pointer;
           }
         }
