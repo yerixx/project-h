@@ -24,6 +24,7 @@ html {
     justify-content: start;
     align-items: start;
     .profile {
+      //가변 그리드 값에서 고정 px 값으로 바꾸기!!
       width: 25vw;
       height: 100vh;
       gap: 50px;
